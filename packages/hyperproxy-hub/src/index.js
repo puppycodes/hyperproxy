@@ -31,10 +31,10 @@ function onConnection(ws) {
             return;
         }
 
-        console.log('Got message', jsond);
 
         // if not all channel and no HyperProxy-node has been assigned
         if (jsond.channel !== 'all' && jsond.message.type === HUB_MSG_TYPE.JOIN) {
+            console.log('Got message', jsond);
             if (!datMap[jsond.channel]) {
                 datMap[jsond.channel] = new HyperProxyNode(jsond.channel);
             }
@@ -46,7 +46,7 @@ function onConnection(ws) {
             .clients
             .forEach((client) => {
                 if (jsond.app === client.app) {
-                    console.log('Broadcasting on app: %s', client.app);
+                    // console.log('Broadcasting on app: %s', client.app);
                     client.send(data);
                 }
             });

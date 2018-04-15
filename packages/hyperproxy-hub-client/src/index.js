@@ -34,6 +34,10 @@ export default class HyperproxyHubClient {
             sw.close();
         });
 
+        sw.on('data', function(m) {
+            console.log(m);
+        });
+
         sw.on('message', function(m) {
             console.log(m);
         });
