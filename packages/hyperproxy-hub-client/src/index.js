@@ -29,28 +29,28 @@ export default class HyperproxyHubClient {
     handleSwarmEvent() {
         const sw = this.swarm;
 
-        /* Swarm Event */
-        sw.on('close', function(e) {
-            sw.close();
-        });
+        // /* Swarm Event */
+        // sw.on('close', function(e) {
+        //     sw.close();
+        // });
 
-        sw.on('data', function(m) {
-            console.log(m);
-        });
+        // sw.on('data', function(m) {
+        //     console.log(m);
+        // });
 
-        sw.on('message', function(m) {
-            console.log(m);
-        });
+        // sw.on('message', function(m) {
+        //     console.log(m);
+        // });
 
-        sw.on('peer', function(peer, id) {
-            console.log('connected to a new peer:', id);
-            console.log('total peers:', sw.peers.length);
-        });
+        // sw.on('peer', function(peer, id) {
+        //     console.log('connected to a new peer:', id);
+        //     console.log('total peers:', sw.peers.length);
+        // });
 
-        sw.on('disconnect', function(peer, id) {
-            console.log('disconnected from a peer:', id);
-            console.log('total peers:', sw.peers.length);
-        });
+        // sw.on('disconnect', function(peer, id) {
+        //     console.log('disconnected from a peer:', id);
+        //     console.log('total peers:', sw.peers.length);
+        // });
         /* END Swarm Event */
     }
 }
