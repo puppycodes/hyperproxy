@@ -38,12 +38,14 @@ function onConnection(ws) {
                 if (!datMap[jsond.channel]) {
                     const nodeInstance = new HyperProxyNode(jsond.channel);
 
-                    datMap[jsond.channel] = [nodeInstance];
+                    //TODO: Extends this to be a more generic object that has peer ID
+                    datMap[jsond.channel] = nodeInstance.client.swarm.me;
                 }
 
-                datMap[jsond.channel].push(ws);
-
-                ws.send('Hello');
+                ws.send(JSON.stringify({
+                    type: 'NODE_ID',
+                    nodeid: datMap[jsond.channel]
+                }));
             }
 
             return;
