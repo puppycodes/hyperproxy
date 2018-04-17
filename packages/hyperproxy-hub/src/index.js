@@ -31,12 +31,19 @@ function onConnection(ws) {
             return;
         }
 
-
         // if not all channel and no HyperProxy-node has been assigned
-        if (jsond.channel !== 'all' && jsond.message.type === HUB_MSG_TYPE.JOIN) {
+        if (jsond.channel !== 'all') {
             console.log('Got message', jsond);
-            if (!datMap[jsond.channel]) {
-                datMap[jsond.channel] = new HyperProxyNode(jsond.channel);
+            if (jsond.message.type === HUB_MSG_TYPE.JOIN) {
+                if (!datMap[jsond.channel]) {
+                    const nodeInstance = new HyperProxyNode(jsond.channel);
+
+                    datMap[jsond.channel] = [nodeInstance];
+                }
+
+                datMap[jsond.channel].peers.push(ws);
+
+                ws.send('Hello');
             }
 
             return;

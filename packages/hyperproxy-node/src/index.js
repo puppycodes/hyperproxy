@@ -44,12 +44,6 @@ export default class HyperproxyNode {
                 console.error("ERROR in hyperproxy-node! ", err);
             }
         });
-
-        await client.waitForHub('connect')
-        client.hub.broadcast(key, {
-            from: client.swarm.me,
-            type: HUB_MSG_TYPE.JOIN
-        });
     }
 
     _getPeerFrom(peerKey, peers) {
@@ -79,16 +73,7 @@ export default class HyperproxyNode {
                 body: file
             });
 
-            console.log(client.swarm);
-            console.log(client.swarm.remotes[from]);
-
             client.swarm.remotes[from].send(Buffer.from(payload));
-
-            // client.hub.broadcast(key, {
-            //     from: client.swarm.me,
-            //     type: HUB_MSG_TYPE.RESPONSE,
-            //     body: file
-            // });
         }
     }
 
